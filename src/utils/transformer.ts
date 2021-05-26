@@ -34,7 +34,7 @@ export function transformRoast(sentence: string, changeProb = 0.5): string {
 
   let transformed = '';
 
-  while (transformedWords) {
+  while (transformedWords.length) {
     transformed += transformedWords.shift();
 
     if (separators?.length) {
