@@ -3,9 +3,10 @@ import { transformRoast } from '../utils/transformer';
 
 export default {
   event: 'message',
-  description: 'Transform your message into a roastful version of it',
   execute: async (message: Message): Promise<Message | void> => {
     const { channel, content, author, guild } = message;
+
+    console.log('happens');
 
     if (
       !guild ||

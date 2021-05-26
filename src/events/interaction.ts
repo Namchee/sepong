@@ -4,7 +4,6 @@ import { transformRoast } from '../utils/transformer';
 
 export default {
   event: 'interaction',
-  description: 'Transform your message into a roastful version of it',
   execute: async (interaction: Interaction): Promise<Message | void> => {
     const { channel, user, guild } = interaction;
 
