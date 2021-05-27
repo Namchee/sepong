@@ -12,34 +12,14 @@ export function transformRoast(sentence: string, changeProb = 0.5): string {
     throw new OutOfRangeError('changeProb', 0, 1);
   }
 
-  const tokens = sentence.split(/\s+/g);
-  const separators = sentence.match(/\s+/g);
+  const tokens = sentence.split('');
 
-  const transformedWords = tokens.map((token: string): string => {
-    const chars = token.split('');
-    const chaoticChar = chars.map((char: string): string => {
-      const roll = Math.random();
-      const transformable = char.toUpperCase() !== char.toLowerCase();
+  const transformedSentence = tokens.map((token: string) => {
+    const roll = Math.random();
 
-      if (transformable) {
-        return roll < changeProb ? char.toLowerCase() : char.toUpperCase();
-      }
+    return roll < changeProb ? token.toUpperCase() : token.toLowerCase();
+  })
+    .join('');
 
-      return char;
-    });
-
-    return chaoticChar.join('');
-  });
-
-  let transformed = '';
-
-  while (transformedWords.length) {
-    transformed += transformedWords.shift();
-
-    if (separators?.length) {
-      transformed += separators.shift();
-    }
-  }
-
-  return transformed;
+  return transformedSentence;
 }
