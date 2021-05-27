@@ -15,7 +15,7 @@
     "url": "git+https://github.com/Namchee/sepong.git"
   },
   "keywords": [
-    "discord-js",
+    "cloudflare-workers",
     "slash-commands"
   ],
   "author": "Cristopher Namchee",
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/Namchee/sepong#readme",
   "dependencies": {
-    "discord.js": "github:discordjs/discord.js"
+    "@glenstack/cf-workers-discord-bot": "^1.1.1"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
@@ -40,7 +40,9 @@
     "jest": "^27.0.1",
     "nodemon": "^2.0.7",
     "ts-jest": "^27.0.0",
+    "ts-loader": "^7.0.5",
     "ts-node": "^10.0.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "webpack": "^4.43.0"
   }
 }

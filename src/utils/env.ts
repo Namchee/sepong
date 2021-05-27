@@ -5,5 +5,5 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export default {
-  discordToken: process.env.DISCORD_TOKEN,
+  discordToken: process.env.DISCORD_SECRET,
 };

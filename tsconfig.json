@@ -4,6 +4,7 @@
     "lib": [
       "ES2019.Array",
       "ES2020.Promise",
+      "WebWorker"
     ],
     "module": "commonjs",
     "allowJs": true,

@@ -1,20 +1,15 @@
-import { Client } from 'discord.js';
-import { registerCommands } from './utils/commands';
+import { createSlashCommandHandler } from '@glenstack/cf-workers-discord-bot';
 
-import interactionHandler from './events/interaction';
-import messageHandler from './events/message';
-
+import { roastCommand, roastHandler } from './commands/roast';
 import env from './utils/env';
 
-(async () => {
-  const client = new Client({ intents: ['GUILD_MESSAGES', 'GUILDS'], partials: ['MESSAGE'] });
+const slashCommandHandler = createSlashCommandHandler({
+  applicationID: '847082684806987826',
+  applicationSecret: env.discordToken || '', // You should store this in a secret
+  publicKey: '28a1b05f8a3ff0ebc1f60045174af7eccbeefece09640d0373f5df23d38eaa38',
+  commands: [[roastCommand, roastHandler]],
+});
 
-  await registerCommands(client);
-
-  client.on('message', messageHandler.execute);
-  client.on('interaction', interactionHandler.execute);
-
-  client.once('ready', () => console.log('Ready to roast!'));
-
-  client.login(env.discordToken);
-})();
+addEventListener('fetch', (event: any) => {
+  event.respondWith(slashCommandHandler(event.request));
+});
