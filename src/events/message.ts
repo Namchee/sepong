@@ -6,8 +6,6 @@ export default {
   execute: async (message: Message): Promise<Message | void> => {
     const { channel, content, author, guild } = message;
 
-    console.log('happens');
-
     if (
       !guild ||
       !channel.isText() ||
@@ -17,9 +15,12 @@ export default {
       return;
     }
 
-    const arg = content.slice(2)[1].trim();
+    const arg = content.slice(2).trim();
     const transformed = transformRoast(arg);
 
-    return message.edit(transformed);
+    await Promise.all([
+      message.delete(),
+      message.channel.send(transformed),
+    ]);
   },
 };

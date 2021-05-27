@@ -19,11 +19,10 @@ export function transformRoast(sentence: string, changeProb = 0.5): string {
     const chars = token.split('');
     const chaoticChar = chars.map((char: string): string => {
       const roll = Math.random();
-      const isUppercase = char.toUpperCase() === char;
       const transformable = char.toUpperCase() !== char.toLowerCase();
 
-      if (roll <= changeProb && transformable) {
-        return isUppercase ? char.toLowerCase() : char.toUpperCase();
+      if (transformable) {
+        return roll < changeProb ? char.toLowerCase() : char.toUpperCase();
       }
 
       return char;
